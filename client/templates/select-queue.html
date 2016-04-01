@@ -1,0 +1,32 @@
+<template name="selectQueue">
+  <div class="container">
+    <input type='submit' id='new-game-1v1' value='1vs1 game'>
+    <p class="queue-message">OR</p>
+    <input type='submit' id='new-game-2v2' value='2vs2 game'>
+  {{#each gamesWaiting}}
+      <section id='{{_id}}' class='waiting-queue'>
+        <p>
+          <span class="fa-stack">
+            <i class="fa fa-square-o fa-stack-2x"></i>
+            <i class="fa fa-user-plus fa-stack-1x"></i>
+          </span>
+          <span>{{gridSize}} players game waiting for challenger</span>
+        </p>
+        <p class="timestamp">Added {{formatDate timestamp}}</p>
+      </section>
+  {{/each}}
+
+    {{#unless gamesWaiting}}
+      <h4 class='queue-message'><strong>No Games Currently in Queue</strong> {{timestamp}}</h4>
+    {{/unless}}
+  {{#if gameInProgress}}
+    <div class='game1'>
+      <input type='submit' id='leave-game' value='Leave Game'>
+      <input type='submit' id='restart-game' value='Restart Game'>
+    </div>
+      {{> Grid}}
+  {{/if}}
+  </div>
+  <div class="footer">
+  </div>
+</template>
